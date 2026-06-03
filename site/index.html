@@ -1,0 +1,1527 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TechNova Solutions</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <style>
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg: #09090f;
+      --surface: #111118;
+      --card: #15151e;
+      --border: rgba(255, 255, 255, 0.07);
+      --accent: #4fffff;
+      --accent2: #a78bff;
+      --text: #e8e8f0;
+      --muted: #6b6b80;
+      --white: #ffffff;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* â”€â”€ NOISE OVERLAY â”€â”€ */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+      opacity: .4;
+    }
+
+    /* â”€â”€ NAV â”€â”€ */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.2rem 4rem;
+      background: rgba(9, 9, 15, 0.7);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .logo {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 800;
+      font-size: 1.2rem;
+      letter-spacing: -0.02em;
+      color: var(--white);
+    }
+
+    .logo span {
+      color: var(--accent);
+    }
+
+    nav ul {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    nav a {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--muted);
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      transition: color .2s;
+    }
+
+    nav a:hover {
+      color: var(--text);
+    }
+
+    .btn-nav {
+      background: var(--accent);
+      color: var(--bg) !important;
+      padding: .45rem 1.2rem;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 0.82rem;
+    }
+
+    /* â”€â”€ HERO â”€â”€ */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 8rem 2rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* glow blobs */
+    .blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(100px);
+      pointer-events: none;
+      animation: drift 8s ease-in-out infinite alternate;
+    }
+
+    .blob-1 {
+      width: 500px;
+      height: 500px;
+      background: rgba(79, 255, 255, .06);
+      top: -100px;
+      left: -80px;
+    }
+
+    .blob-2 {
+      width: 400px;
+      height: 400px;
+      background: rgba(167, 139, 255, .07);
+      bottom: 0;
+      right: -80px;
+      animation-delay: -3s;
+    }
+
+    @keyframes drift {
+      from {
+        transform: translate(0, 0) scale(1);
+      }
+
+      to {
+        transform: translate(40px, 30px) scale(1.08);
+      }
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: .45rem;
+      background: rgba(79, 255, 255, .08);
+      border: 1px solid rgba(79, 255, 255, .2);
+      color: var(--accent);
+      font-size: .75rem;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      padding: .35rem .9rem;
+      border-radius: 100px;
+      margin-bottom: 2rem;
+      animation: fadeUp .8s ease both;
+    }
+
+    .tag::before {
+      content: 'â—';
+      font-size: .5rem;
+    }
+
+    h1 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 700;
+      font-size: clamp(2.5rem, 5vw, 5rem);
+      line-height: 1.06;
+      color: var(--white);
+      max-width: 900px;
+      animation: fadeUp .9s .1s ease both;
+    }
+
+    h1 .hi {
+      color: var(--accent);
+    }
+
+    h1 .hi2 {
+      color: var(--accent2);
+    }
+
+    .hero-sub {
+      margin-top: 1.4rem;
+      font-size: 0.95rem;
+      font-weight: 300;
+      color: var(--muted);
+      max-width: 560px;
+      line-height: 1.6;
+      animation: fadeUp .9s .2s ease both;
+    }
+
+    .hero-cta {
+      margin-top: 2.8rem;
+      display: flex;
+      gap: 1rem;
+      animation: fadeUp .9s .3s ease both;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: var(--bg);
+      padding: .85rem 2rem;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: .95rem;
+      text-decoration: none;
+      transition: transform .2s, box-shadow .2s;
+      box-shadow: 0 0 32px rgba(79, 255, 255, .2);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 48px rgba(79, 255, 255, .35);
+    }
+
+    .btn-outline {
+      background: var(--bg);
+      color: var(--text);
+      padding: .85rem 2rem;
+      border-radius: 8px;
+      font-weight: 500;
+      font-size: .95rem;
+      text-decoration: none;
+      border: 1px solid var(--border);
+      transition: border-color .2s, background .2s;
+    }
+
+    .btn-outline:hover {
+      border-color: rgba(255, 255, 255, .25);
+      background: var(--surface);
+    }
+
+    /* scroll line */
+    .scroll-line {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: .5rem;
+      opacity: .4;
+      font-size: .7rem;
+      letter-spacing: .12em;
+      color: var(--muted);
+      animation: fadeUp 1s .6s ease both;
+    }
+
+    @media (max-height: 750px) {
+      .scroll-line {
+        display: none;
+      }
+    }
+
+    .scroll-line::after {
+      content: '';
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, var(--muted), transparent);
+      animation: scrollPulse 2s ease infinite;
+    }
+
+    @keyframes scrollPulse {
+
+      0%,
+      100% {
+        opacity: .4;
+        transform: scaleY(1);
+      }
+
+      50% {
+        opacity: .9;
+        transform: scaleY(1.2);
+      }
+    }
+
+    /* â”€â”€ STATS â”€â”€ */
+    .stats {
+      display: flex;
+      justify-content: center;
+      gap: 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      background: var(--surface);
+      overflow: hidden;
+    }
+
+    .stat {
+      flex: 1;
+      text-align: center;
+      padding: 2.2rem 1rem;
+      border-right: 1px solid var(--border);
+      position: relative;
+      transition: background .25s;
+    }
+
+    .stat:last-child {
+      border-right: none;
+    }
+
+    .stat:hover {
+      background: rgba(79, 255, 255, .03);
+    }
+
+    .stat-num {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 800;
+      font-size: 2.2rem;
+      color: var(--white);
+      letter-spacing: -0.03em;
+    }
+
+    .stat-num span {
+      color: var(--accent);
+    }
+
+    .stat-label {
+      font-size: .78rem;
+      color: var(--muted);
+      margin-top: .3rem;
+      letter-spacing: .05em;
+    }
+
+    /* â”€â”€ SECTIONS â”€â”€ */
+    section {
+      position: relative;
+      z-index: 1;
+    }
+
+    .container {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    .section-head {
+      text-align: center;
+      margin-bottom: 3.5rem;
+    }
+
+    .section-label {
+      font-size: .72rem;
+      font-weight: 600;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: .8rem;
+    }
+
+    .section-title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 700;
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      letter-spacing: -0.025em;
+      color: var(--white);
+      line-height: 1.15;
+    }
+
+    .section-title span {
+      color: var(--accent2);
+    }
+
+    .section-sub {
+      margin-top: .8rem;
+      color: var(--muted);
+      font-size: .95rem;
+      max-width: 480px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* â”€â”€ SERVICES â”€â”€ */
+    #servicos {
+      padding: 7rem 0;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.2px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+    }
+
+    .service-card {
+      background: var(--card);
+      padding: 2.4rem 2rem;
+      position: relative;
+      transition: background .25s;
+      cursor: default;
+    }
+
+    .service-card:hover {
+      background: #1a1a26;
+    }
+
+    .service-card:hover .sc-icon {
+      transform: scale(1.1);
+    }
+
+    .sc-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      background: rgba(79, 255, 255, .1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      margin-bottom: 1.4rem;
+      transition: transform .25s;
+    }
+
+    .sc-title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 600;
+      font-size: 1rem;
+      color: var(--white);
+      margin-bottom: .6rem;
+      letter-spacing: -0.01em;
+    }
+
+    .sc-desc {
+      font-size: .85rem;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .sc-arrow {
+      position: absolute;
+      top: 2rem;
+      right: 2rem;
+      color: var(--border);
+      font-size: .9rem;
+      transition: color .2s, transform .2s;
+    }
+
+    .service-card:hover .sc-arrow {
+      color: var(--accent);
+      transform: translate(2px, -2px);
+    }
+
+    /* â”€â”€ PROJETOS â”€â”€ */
+    #projetos {
+      padding: 7rem 0;
+      background: var(--surface);
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+
+    .project-card {
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      overflow: hidden;
+      background: var(--card);
+      transition: transform .25s, border-color .25s;
+      cursor: pointer;
+    }
+
+    .project-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(79, 255, 255, .25);
+    }
+
+    .project-thumb {
+      height: 180px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+    }
+
+    .pt-1 {
+      background: linear-gradient(135deg, #0d1a30 0%, #0a2a40 100%);
+    }
+
+    .pt-2 {
+      background: linear-gradient(135deg, #150d30 0%, #1e0a40 100%);
+    }
+
+    .pt-3 {
+      background: linear-gradient(135deg, #0d2010 0%, #0a3018 100%);
+    }
+
+    .pt-4 {
+      background: linear-gradient(135deg, #2a1000 0%, #3a1800 100%);
+    }
+
+    .project-thumb::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, transparent 40%, var(--card));
+    }
+
+    .project-body {
+      padding: 1.5rem;
+    }
+
+    .project-tags {
+      display: flex;
+      gap: .5rem;
+      flex-wrap: wrap;
+      margin-bottom: .9rem;
+    }
+
+    .ptag {
+      font-size: .68rem;
+      font-weight: 600;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      padding: .25rem .65rem;
+      border-radius: 100px;
+      background: rgba(255, 255, 255, .05);
+      color: var(--muted);
+      border: 1px solid var(--border);
+    }
+
+    .project-title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: var(--white);
+      margin-bottom: .5rem;
+      letter-spacing: -0.01em;
+    }
+
+    .project-desc {
+      font-size: .83rem;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .project-link {
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      margin-top: 1rem;
+      color: var(--accent);
+      font-size: .82rem;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .project-link:hover {
+      opacity: .8;
+    }
+
+    /* â”€â”€ TECNOLOGIAS â”€â”€ */
+    #tecnologias {
+      padding: 7rem 0;
+    }
+
+    .tech-track-wrap {
+      overflow: hidden;
+      mask: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
+    }
+
+    .tech-track {
+      display: flex;
+      gap: 1rem;
+      width: max-content;
+      animation: scrollLeft 28s linear infinite;
+    }
+
+    .tech-track:hover {
+      animation-play-state: paused;
+    }
+
+    @keyframes scrollLeft {
+      from {
+        transform: translateX(0);
+      }
+
+      to {
+        transform: translateX(-50%);
+      }
+    }
+
+    .tech-pill {
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+      padding: .7rem 1.4rem;
+      border-radius: 100px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      white-space: nowrap;
+      font-size: .85rem;
+      color: var(--text);
+      transition: border-color .2s;
+    }
+
+    .tech-pill:hover {
+      border-color: rgba(79, 255, 255, .3);
+    }
+
+    .tech-icon {
+      font-size: 1rem;
+    }
+
+    /* â”€â”€ SOBRE / DIFERENCIAIS â”€â”€ */
+    #sobre {
+      padding: 7rem 0;
+      background: var(--surface);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .about-text .section-label {
+      text-align: left;
+    }
+
+    .about-text .section-title {
+      text-align: left;
+    }
+
+    .about-text p {
+      color: var(--muted);
+      font-size: .95rem;
+      line-height: 1.8;
+      margin-top: 1.2rem;
+    }
+
+    .diff-list {
+      margin-top: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: .8rem;
+    }
+
+    .diff-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      padding: 1rem 1.2rem;
+      border-radius: 10px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      transition: border-color .2s;
+    }
+
+    .diff-item:hover {
+      border-color: rgba(79, 255, 255, .2);
+    }
+
+    .diff-icon {
+      font-size: 1.1rem;
+      margin-top: .1rem;
+      flex-shrink: 0;
+    }
+
+    .diff-text strong {
+      display: block;
+      font-size: .88rem;
+      color: var(--white);
+      font-weight: 600;
+      margin-bottom: .2rem;
+    }
+
+    .diff-text span {
+      font-size: .8rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .about-visual {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .card-float {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem;
+      width: 100%;
+      max-width: 320px;
+      position: relative;
+    }
+
+    .card-float::before {
+      content: '';
+      position: absolute;
+      inset: -1px;
+      border-radius: 17px;
+      background: linear-gradient(135deg, rgba(79, 255, 255, .2), rgba(167, 139, 255, .2), transparent 60%);
+      z-index: -1;
+    }
+
+    .cf-title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+    }
+
+    .cf-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: .7rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .cf-row:last-of-type {
+      border-bottom: none;
+    }
+
+    .cf-label {
+      font-size: .82rem;
+      color: var(--muted);
+    }
+
+    .cf-value {
+      font-size: .82rem;
+      color: var(--white);
+      font-weight: 600;
+    }
+
+    .cf-badge {
+      background: rgba(79, 255, 255, .1);
+      color: var(--accent);
+      font-size: .7rem;
+      font-weight: 700;
+      padding: .2rem .6rem;
+      border-radius: 100px;
+    }
+
+    /* â”€â”€ DEPOIMENTOS â”€â”€ */
+    #depoimentos {
+      padding: 7rem 0;
+    }
+
+    .testi-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.2rem;
+    }
+
+    .testi-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.8rem;
+      transition: border-color .2s;
+    }
+
+    .testi-card:hover {
+      border-color: rgba(167, 139, 255, .3);
+    }
+
+    .stars {
+      color: #ffc14a;
+      font-size: .85rem;
+      margin-bottom: 1rem;
+      letter-spacing: .1em;
+    }
+
+    .testi-text {
+      font-size: .87rem;
+      color: var(--muted);
+      line-height: 1.75;
+      font-style: italic;
+    }
+
+    .testi-author {
+      margin-top: 1.4rem;
+      display: flex;
+      align-items: center;
+      gap: .8rem;
+    }
+
+    .testi-avatar {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+
+    .av1 {
+      background: linear-gradient(135deg, #4fffff33, #4fffff88);
+    }
+
+    .av2 {
+      background: linear-gradient(135deg, #a78bff33, #a78bff88);
+    }
+
+    .av3 {
+      background: linear-gradient(135deg, #ff7b4a33, #ff7b4a88);
+    }
+
+    .testi-name {
+      font-size: .85rem;
+      color: var(--white);
+      font-weight: 600;
+    }
+
+    .testi-role {
+      font-size: .75rem;
+      color: var(--muted);
+    }
+
+    /* â”€â”€ CONTATO â”€â”€ */
+    #contato {
+      padding: 7rem 0;
+      background: var(--surface);
+    }
+
+    .contact-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .contact-info .section-label,
+    .contact-info .section-title {
+      text-align: left;
+    }
+
+    .contact-info p {
+      color: var(--muted);
+      font-size: .9rem;
+      margin-top: 1rem;
+      line-height: 1.75;
+    }
+
+    .contact-items {
+      margin-top: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: .8rem;
+    }
+
+    .ci {
+      display: flex;
+      align-items: center;
+      gap: .9rem;
+    }
+
+    .ci-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 9px;
+      background: rgba(79, 255, 255, .08);
+      border: 1px solid rgba(79, 255, 255, .15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: .95rem;
+      flex-shrink: 0;
+    }
+
+    .ci-text {
+      font-size: .85rem;
+      color: var(--text);
+    }
+
+    .ci-label {
+      font-size: .72rem;
+      color: var(--muted);
+    }
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: .4rem;
+    }
+
+    .form-group label {
+      font-size: .75rem;
+      font-weight: 600;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: .8rem 1rem;
+      color: var(--text);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: .9rem;
+      outline: none;
+      transition: border-color .2s, box-shadow .2s;
+      appearance: none;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      border-color: rgba(79, 255, 255, .4);
+      box-shadow: 0 0 0 3px rgba(79, 255, 255, .06);
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 110px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .btn-submit {
+      background: var(--accent);
+      color: var(--bg);
+      padding: .9rem;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: .95rem;
+      border: none;
+      cursor: pointer;
+      transition: opacity .2s, transform .2s;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    .btn-submit:hover {
+      opacity: .9;
+      transform: translateY(-1px);
+    }
+
+    /* â”€â”€ FOOTER â”€â”€ */
+    footer {
+      background: var(--bg);
+      border-top: 1px solid var(--border);
+      padding: 2.5rem 4rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer-copy {
+      font-size: .8rem;
+      color: var(--muted);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 1.8rem;
+    }
+
+    .footer-links a {
+      font-size: .8rem;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color .2s;
+    }
+
+    .footer-links a:hover {
+      color: var(--text);
+    }
+
+    /* â”€â”€ ANIM â”€â”€ */
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(24px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity .65s ease, transform .65s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* â”€â”€ RESPONSIVE â”€â”€ */
+    @media (max-width: 900px) {
+      nav {
+        padding: 1rem 1.5rem;
+      }
+
+      nav ul {
+        display: none;
+      }
+
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .testi-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .about-grid,
+      .contact-wrap {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+
+      .stats {
+        flex-direction: column;
+      }
+
+      .stat {
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+      }
+
+      footer {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+        padding: 2rem;
+      }
+
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <nav>
+    <div class="logo">Tech<span>Nova</span></div>
+    <ul>
+      <li><a href="#servicos">ServiÃ§os</a></li>
+      <li><a href="#projetos">Projetos</a></li>
+      <li><a href="#tecnologias">Tecnologias</a></li>
+      <li><a href="#sobre">Sobre</a></li>
+      <li><a href="#contato" class="btn-nav">Contato</a></li>
+    </ul>
+  </nav>
+  <section class="hero">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+
+    <div class="tag">Desenvolvimento Web &amp; Cloud</div>
+
+    <h1>
+      SoluÃ§Ãµes digitais<br>
+      que <span class="hi">aceleram</span> o<br>
+      <span class="hi2">seu negÃ³cio.</span>
+    </h1>
+
+    <p class="hero-sub">
+      Da concepÃ§Ã£o ao deploy â€” criamos experiÃªncias web modernas e infraestruturas cloud escalÃ¡veis para empresas que
+      nÃ£o querem ficar para trÃ¡s.
+    </p>
+
+    <div class="hero-cta">
+      <a href="#projetos" class="btn-primary">Ver Projetos</a>
+      <a href="#contato" class="btn-outline">Falar Conosco</a>
+    </div>
+
+    <div class="scroll-line">SCROLL</div>
+  </section>
+  <div class="stats">
+    <div class="stat">
+      <div class="stat-num">48<span>+</span></div>
+      <div class="stat-label">Projetos entregues</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">32<span>+</span></div>
+      <div class="stat-label">Clientes satisfeitos</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">5<span>+</span></div>
+      <div class="stat-label">Anos de experiÃªncia</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">99<span>%</span></div>
+      <div class="stat-label">Uptime garantido</div>
+    </div>
+  </div>
+  <section id="servicos">
+    <div class="container">
+      <div class="section-head reveal">
+        <div class="section-label">O que fazemos</div>
+        <h2 class="section-title">Nossos <span>ServiÃ§os</span></h2>
+        <p class="section-sub">SoluÃ§Ãµes completas para transformar a sua presenÃ§a digital</p>
+      </div>
+      <div class="services-grid reveal">
+        <div class="service-card">
+          <div class="sc-icon">ðŸŒ</div>
+          <div class="sc-title">Desenvolvimento Web</div>
+          <p class="sc-desc">Sites e sistemas web de alto desempenho com React, Next.js e tecnologias modernas â€” focados
+            em velocidade e conversÃ£o.</p>
+          <div class="sc-arrow">â†—</div>
+        </div>
+        <div class="service-card">
+          <div class="sc-icon">â˜ï¸</div>
+          <div class="sc-title">Cloud &amp; DevOps</div>
+          <p class="sc-desc">Arquitetura e migraÃ§Ã£o para AWS, GCP ou Azure com CI/CD automatizado, monitoramento e alta
+            disponibilidade.</p>
+          <div class="sc-arrow">â†—</div>
+        </div>
+        <div class="service-card">
+          <div class="sc-icon">ðŸ“±</div>
+          <div class="sc-title">Apps Mobile</div>
+          <p class="sc-desc">Aplicativos iOS e Android com React Native â€” uma base de cÃ³digo, duas plataformas,
+            experiÃªncia nativa.</p>
+          <div class="sc-arrow">â†—</div>
+        </div>
+        <div class="service-card">
+          <div class="sc-icon">ðŸ”Œ</div>
+          <div class="sc-title">APIs &amp; IntegraÃ§Ãµes</div>
+          <p class="sc-desc">APIs RESTful e GraphQL robustas, integraÃ§Ãµes com ERPs, CRMs, gateways de pagamento e
+            serviÃ§os externos.</p>
+          <div class="sc-arrow">â†—</div>
+        </div>
+        <div class="service-card">
+          <div class="sc-icon">ðŸŽ¨</div>
+          <div class="sc-title">UI/UX Design</div>
+          <p class="sc-desc">Interfaces centradas no usuÃ¡rio com design systems escalÃ¡veis, protÃ³tipos e testes de
+            usabilidade.</p>
+          <div class="sc-arrow">â†—</div>
+        </div>
+        <div class="service-card">
+          <div class="sc-icon">ðŸ”’</div>
+          <div class="sc-title">SeguranÃ§a &amp; Performance</div>
+          <p class="sc-desc">Auditorias de seguranÃ§a, hardening de infraestrutura, otimizaÃ§Ã£o de Core Web Vitals e SEO
+            tÃ©cnico.</p>
+          <div class="sc-arrow">â†—</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="projetos">
+    <div class="container">
+      <div class="section-head reveal">
+        <div class="section-label">PortfÃ³lio</div>
+        <h2 class="section-title">Projetos em <span>Destaque</span></h2>
+        <p class="section-sub">Casos reais, resultados reais</p>
+      </div>
+      <div class="projects-grid">
+        <div class="project-card reveal">
+          <div class="project-thumb pt-1">ðŸ›’</div>
+          <div class="project-body">
+            <div class="project-tags">
+              <span class="ptag">E-commerce</span>
+              <span class="ptag">Next.js</span>
+              <span class="ptag">AWS</span>
+            </div>
+            <div class="project-title">ShopFlow â€” Plataforma de Vendas</div>
+            <p class="project-desc">Plataforma B2C com catÃ¡logo de 50k produtos, checkout otimizado e painel admin em
+              tempo real. Aumento de 38% na conversÃ£o apÃ³s o lanÃ§amento.</p>
+            <a href="#" class="project-link">Ver Case â†’</a>
+          </div>
+        </div>
+        <div class="project-card reveal">
+          <div class="project-thumb pt-2">ðŸ“Š</div>
+          <div class="project-body">
+            <div class="project-tags">
+              <span class="ptag">SaaS</span>
+              <span class="ptag">React</span>
+              <span class="ptag">Node.js</span>
+            </div>
+            <div class="project-title">DataPulse â€” Dashboard Analytics</div>
+            <p class="project-desc">Dashboard de BI em tempo real para uma fintech com +200 mil usuÃ¡rios. Processamento
+              de 10M eventos/dia com latÃªncia abaixo de 50ms.</p>
+            <a href="#" class="project-link">Ver Case â†’</a>
+          </div>
+        </div>
+        <div class="project-card reveal">
+          <div class="project-thumb pt-3">ðŸ¥</div>
+          <div class="project-body">
+            <div class="project-tags">
+              <span class="ptag">HealthTech</span>
+              <span class="ptag">React Native</span>
+              <span class="ptag">GCP</span>
+            </div>
+            <div class="project-title">MedConnect â€” Telemedicina</div>
+            <p class="project-desc">App de consultas online com videochamada, prontuÃ¡rio digital e agendamento
+              inteligente. +15k consultas/mÃªs em 3 estados.</p>
+            <a href="#" class="project-link">Ver Case â†’</a>
+          </div>
+        </div>
+        <div class="project-card reveal">
+          <div class="project-thumb pt-4">ðŸ­</div>
+          <div class="project-body">
+            <div class="project-tags">
+              <span class="ptag">Industry 4.0</span>
+              <span class="ptag">IoT</span>
+              <span class="ptag">Azure</span>
+            </div>
+            <div class="project-title">FactoryOS â€” GestÃ£o Industrial</div>
+            <p class="project-desc">Sistema de monitoramento de linha de produÃ§Ã£o com IoT, alertas preditivos e
+              relatÃ³rios automÃ¡ticos. ReduÃ§Ã£o de 22% em paradas nÃ£o planejadas.</p>
+            <a href="#" class="project-link">Ver Case â†’</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="tecnologias">
+    <div class="container">
+      <div class="section-head reveal">
+        <div class="section-label">Stack</div>
+        <h2 class="section-title">Tecnologias que <span>Dominamos</span></h2>
+      </div>
+    </div>
+    <div class="tech-track-wrap reveal">
+      <div class="tech-track">
+        <div class="tech-pill"><span class="tech-icon">âš›ï¸</span> React</div>
+        <div class="tech-pill"><span class="tech-icon">â–²</span> Next.js</div>
+        <div class="tech-pill"><span class="tech-icon">ðŸŸ¢</span> Node.js</div>
+        <div class="tech-pill"><span class="tech-icon">ðŸ</span> Python</div>
+        <div class="tech-pill"><span class="tech-icon">â˜ï¸</span> AWS</div>
+        <div class="tech-pill"><span class="tech-icon">ðŸ”·</span> TypeScript</div>
+        <div class="tech-pill"><span class="tech-icon">ðŸ³</span> Docker</div>
+        <div class="tech-pill"><span class="tech-icon">âš™ï¸</span> Kubernetes</div>
+        <div class="tech-pill"><span class="tech-icon">ðŸ—„ï¸</span> PostgreSQL</div>
+        <div class="tech-pill"><span class="tech-icon">ðŸƒ</span> MongoDB</div>
+        <div class="tech-pill"><span class="tech-icon">ðŸ”¥</span> Firebase</div>
+        <div class="tech-pill"><span class="tech-icon">ðŸ“±</span> React Native</div>
+        <div class="tech-pill"><span class="tech-icon">ðŸŒ€</span> GraphQL</div>
+        <div class="tech-pill"><span class="tech-icon">ðŸš€</span> Terraform</div>
+        <div class="tech-pill"><span class="tech-icon">âš›ï¸</span> React</div>
+        <div class="tech-pill"><span class="tech-icon">â–²</span> Next.js</div>
+        <div class="tech-pill"><span class="tech-icon">ðŸŸ¢</span> Node.js</div>
+        <div class="tech-pill"><span class="tech-icon">ðŸ</span> Python</div>
+        <div class="tech-pill"><span class="tech-icon">â˜ï¸</span> AWS</div>
+        <div class="tech-pill"><span class="tech-icon">ðŸ”·</span> TypeScript</div>
+        <div class="tech-pill"><span class="tech-icon">ðŸ³</span> Docker</div>
+        <div class="tech-pill"><span class="tech-icon">âš™ï¸</span> Kubernetes</div>
+        <div class="tech-pill"><span class="tech-icon">ðŸ—„ï¸</span> PostgreSQL</div>
+        <div class="tech-pill"><span class="tech-icon">ðŸƒ</span> MongoDB</div>
+        <div class="tech-pill"><span class="tech-icon">ðŸ”¥</span> Firebase</div>
+        <div class="tech-pill"><span class="tech-icon">ðŸ“±</span> React Native</div>
+        <div class="tech-pill"><span class="tech-icon">ðŸŒ€</span> GraphQL</div>
+        <div class="tech-pill"><span class="tech-icon">ðŸš€</span> Terraform</div>
+      </div>
+    </div>
+  </section>
+  <section id="sobre">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-text reveal">
+          <div class="section-label">Sobre a TechNova</div>
+          <h2 class="section-title">Por que nos <span>escolher?</span></h2>
+          <p>Somos uma equipe de desenvolvedores, designers e arquitetos cloud apaixonados por criar soluÃ§Ãµes que
+            realmente funcionam. Combinamos boas prÃ¡ticas de engenharia com foco total no resultado do cliente.</p>
+
+          <div class="diff-list">
+            <div class="diff-item">
+              <div class="diff-icon">âš¡</div>
+              <div class="diff-text">
+                <strong>Entrega Ãgil</strong>
+                <span>Sprints curtos com entregas frequentes â€” vocÃª acompanha o progresso em tempo real.</span>
+              </div>
+            </div>
+            <div class="diff-item">
+              <div class="diff-icon">ðŸŽ¯</div>
+              <div class="diff-text">
+                <strong>Foco em Resultado</strong>
+                <span>MÃ©tricas de negÃ³cio guiam nossas decisÃµes tÃ©cnicas, nÃ£o o contrÃ¡rio.</span>
+              </div>
+            </div>
+            <div class="diff-item">
+              <div class="diff-icon">ðŸ›¡ï¸</div>
+              <div class="diff-text">
+                <strong>Suporte PÃ³s-lanÃ§amento</strong>
+                <span>Planos de manutenÃ§Ã£o e evoluÃ§Ã£o contÃ­nua para que seu produto nunca pare.</span>
+              </div>
+            </div>
+            <div class="diff-item">
+              <div class="diff-icon">ðŸ“</div>
+              <div class="diff-text">
+                <strong>Time Brasil</strong>
+                <span>100% nacional â€” sem fusos problemÃ¡ticos e comunicaÃ§Ã£o direta em portuguÃªs.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="about-visual reveal">
+          <div class="card-float">
+            <div class="cf-title">Resumo da Empresa</div>
+            <div class="cf-row">
+              <span class="cf-label">FundaÃ§Ã£o</span>
+              <span class="cf-value">2019</span>
+            </div>
+            <div class="cf-row">
+              <span class="cf-label">Equipe</span>
+              <span class="cf-value">12 especialistas</span>
+            </div>
+            <div class="cf-row">
+              <span class="cf-label">LocalizaÃ§Ã£o</span>
+              <span class="cf-value">SÃ£o Paulo, SP</span>
+            </div>
+            <div class="cf-row">
+              <span class="cf-label">Modelo</span>
+              <span class="cf-value">100% Remoto</span>
+            </div>
+            <div class="cf-row">
+              <span class="cf-label">Status</span>
+              <span class="cf-value"><span class="cf-badge">â— Projetos abertos</span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="depoimentos">
+    <div class="container">
+      <div class="section-head reveal">
+        <div class="section-label">Clientes</div>
+        <h2 class="section-title">O que dizem sobre <span>nÃ³s</span></h2>
+      </div>
+      <div class="testi-grid">
+        <div class="testi-card reveal">
+          <div class="stars">â˜…â˜…â˜…â˜…â˜…</div>
+          <p class="testi-text">"A TechNova entregou nosso e-commerce antes do prazo e a performance superou todas as
+            expectativas. Equipe extremamente competente e proativa."</p>
+          <div class="testi-author">
+            <div class="testi-avatar av1">ðŸ‘¨â€ðŸ’¼</div>
+            <div>
+              <div class="testi-name">Carlos MendonÃ§a</div>
+              <div class="testi-role">CEO â€” ShopFlow</div>
+            </div>
+          </div>
+        </div>
+        <div class="testi-card reveal">
+          <div class="stars">â˜…â˜…â˜…â˜…â˜…</div>
+          <p class="testi-text">"Migramos toda nossa infraestrutura para AWS com zero downtime. O nÃ­vel de organizaÃ§Ã£o e
+            comunicaÃ§Ã£o foi impecÃ¡vel durante todo o projeto."</p>
+          <div class="testi-author">
+            <div class="testi-avatar av2">ðŸ‘©â€ðŸ’»</div>
+            <div>
+              <div class="testi-name">Ana Beatriz Lima</div>
+              <div class="testi-role">CTO â€” DataPulse</div>
+            </div>
+          </div>
+        </div>
+        <div class="testi-card reveal">
+          <div class="stars">â˜…â˜…â˜…â˜…â˜…</div>
+          <p class="testi-text">"O app de telemedicina ficou exatamente como imaginamos. O design Ã© incrÃ­vel e os
+            pacientes adoram usar. Parceria para projetos futuros jÃ¡ estÃ¡ garantida!"</p>
+          <div class="testi-author">
+            <div class="testi-avatar av3">ðŸ‘¨â€âš•ï¸</div>
+            <div>
+              <div class="testi-name">Dr. Roberto Alves</div>
+              <div class="testi-role">Fundador â€” MedConnect</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="contato">
+    <div class="container">
+      <div class="contact-wrap">
+        <div class="contact-info reveal">
+          <div class="section-label">Entre em contato</div>
+          <h2 class="section-title">Vamos construir algo <span>incrÃ­vel?</span></h2>
+          <p>Conte sobre o seu projeto e entraremos em contato em atÃ© 24 horas com uma proposta personalizada.</p>
+
+          <div class="contact-items">
+            <div class="ci">
+              <div class="ci-icon">ðŸ“§</div>
+              <div>
+                <div class="ci-label">E-mail</div>
+                <div class="ci-text">contato@technovasolutions.com.br</div>
+              </div>
+            </div>
+            <div class="ci">
+              <div class="ci-icon">ðŸ“±</div>
+              <div>
+                <div class="ci-label">WhatsApp</div>
+                <div class="ci-text">(11) 99999-0000</div>
+              </div>
+            </div>
+            <div class="ci">
+              <div class="ci-icon">ðŸ“</div>
+              <div>
+                <div class="ci-label">LocalizaÃ§Ã£o</div>
+                <div class="ci-text">SÃ£o Paulo, SP â€” Brasil</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="reveal">
+          <div class="contact-form">
+            <div class="form-row">
+              <div class="form-group">
+                <label>Nome</label>
+                <input type="text" placeholder="Seu nome">
+              </div>
+              <div class="form-group">
+                <label>Empresa</label>
+                <input type="text" placeholder="Nome da empresa">
+              </div>
+            </div>
+            <div class="form-group">
+              <label>E-mail</label>
+              <input type="email" placeholder="seu@email.com">
+            </div>
+            <div class="form-group">
+              <label>ServiÃ§o de interesse</label>
+              <select>
+                <option>Desenvolvimento Web</option>
+                <option>Cloud & DevOps</option>
+                <option>App Mobile</option>
+                <option>API & IntegraÃ§Ãµes</option>
+                <option>UI/UX Design</option>
+                <option>Outro</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Mensagem</label>
+              <textarea placeholder="Descreva seu projeto, prazo e orÃ§amento estimado..."></textarea>
+            </div>
+            <button class="btn-submit">Enviar Mensagem â†’</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer>
+    <div class="footer-copy">Â© 2026 TechNova Solutions. Todos os direitos reservados.</div>
+    <div class="footer-links">
+      <a href="#">LinkedIn</a>
+      <a href="#">GitHub</a>
+      <a href="#">Instagram</a>
+      <a href="#">PolÃ­tica de Privacidade</a>
+    </div>
+  </footer>
+
+  <script>
+    // Scroll reveal
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) {
+          e.target.style.transitionDelay = (i * 0.07) + 's';
+          e.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Smooth active nav
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('nav a[href^="#"]');
+    window.addEventListener('scroll', () => {
+      let cur = '';
+      sections.forEach(s => { if (window.scrollY >= s.offsetTop - 120) cur = s.id; });
+      navLinks.forEach(a => {
+        a.style.color = a.getAttribute('href') === '#' + cur ? 'var(--text)' : '';
+      });
+    });
+
+    // Submit feedback
+    document.querySelector('.btn-submit').addEventListener('click', function () {
+      this.textContent = 'âœ“ Mensagem enviada!';
+      this.style.background = '#2aff9e';
+      setTimeout(() => {
+        this.textContent = 'Enviar Mensagem â†’';
+        this.style.background = '';
+      }, 3000);
+    });
+  </script>
+
+</body>
+
+</html>
