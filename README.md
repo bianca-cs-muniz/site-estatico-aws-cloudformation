@@ -40,4 +40,4 @@ Infraestrutura automatizada na AWS para hospedar um site estático em bucket S3,
 
 ## Aprendizados
 
-Esse projeto foi uma boa oportunidade pra entender na prática como funciona IaC — desde a definição dos recursos no YAML até o gerenciamento de permissões e políticas no S3. A parte de configurar o acesso público corretamente foi onde ficou mais claro como as policies funcionam.
+Esse projeto foi uma boa oportunidade pra entender na prática como funciona IaC, desde a definição dos recursos no YAML até o gerenciamento de permissões e políticas no S3. A parte de configurar o acesso público corretamente foi onde ficou mais claro como as policies funcionam.
